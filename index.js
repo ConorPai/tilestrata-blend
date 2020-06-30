@@ -83,7 +83,22 @@ module.exports = function(layers, options) {
 							intermediate = image;
 							return callback();
 						}
-						intermediate.composite(image, res[1], callback);
+
+						//两个图片大小不一致时，向大的拉伸
+						if (intermediate.width() != image.width()) {
+							if (intermediate.width() > image.width()) {
+								image.resize(intermediate.width(), intermediate.height(), function (err, result) {
+									intermediate.composite(result, res[1], callback);
+								});
+							} else {
+								intermediate.resize(image.width(), image.height(), function (err, result) {
+									intermediate = result;
+									intermediate.composite(image, res[1], callback);
+								});
+							}
+						}
+						else
+							intermediate.composite(image, res[1], callback);
 					}, function(err) {
 						if (err) return callback(err);
 						if (!intermediate) {

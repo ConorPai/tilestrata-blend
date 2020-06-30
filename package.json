@@ -1,6 +1,6 @@
 {
-  "name": "tilestrata-blend",
-  "version": "0.3.4",
+  "name": "@conorpai/tilestrata-blend",
+  "version": "0.3.5",
   "description": "A TileStrata plugin for blending-together multiple layers.",
   "author": "Brian Reavis <brian@naturalatlas.com>",
   "license": "Apache License, v2.0",
@@ -36,5 +36,8 @@
   "peerDependencies": {
     "tilestrata": "*",
     "mapnik": "*"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
